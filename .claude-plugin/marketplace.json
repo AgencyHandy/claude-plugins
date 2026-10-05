@@ -1,0 +1,19 @@
+{
+  "name": "agencyhandy",
+  "owner": {
+    "name": "Agency Handy",
+    "email": "support@agencyhandy.com"
+  },
+  "metadata": {
+    "description": "Official Agency Handy plugins for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "agencyhandy",
+      "source": "./plugins/agencyhandy",
+      "description": "Work with your Agency Handy workspace from Claude Code: clients, leads, projects, tasks, tickets, invoices, proposals and orders.",
+      "version": "1.0.0",
+      "category": "productivity"
+    }
+  ]
+}
