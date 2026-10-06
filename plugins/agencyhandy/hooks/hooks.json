@@ -3,7 +3,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "^mcp__plugin_agencyhandy_agencyhandy__ah_(invoice_send|proposal_send|client_invite|client_create|lead_convert|invoice_set_status|custom_field_delete)$",
+        "matcher": "^mcp__.*__ah_(invoice_send|proposal_send|client_invite|client_create|lead_convert|invoice_set_status|custom_field_delete)$",
         "hooks": [
           {
             "type": "command",

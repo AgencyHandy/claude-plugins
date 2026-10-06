@@ -1,6 +1,6 @@
 {
   "name": "agencyhandy",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Connects Claude Code to your Agency Handy workspace through the hosted Agency Handy MCP server.",
   "author": {
     "name": "Agency Handy",
@@ -33,5 +33,7 @@
         "Authorization": "Bearer ${user_config.api_key}"
       }
     }
-  }
+  },
+  "license": "MIT",
+  "privacyPolicyUrl": "https://agencyhandy.com/privacy-policy"
 }
