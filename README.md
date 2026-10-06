@@ -16,7 +16,8 @@ To change the key later, run `/plugin configure agencyhandy@agencyhandy` in Clau
 ## What you get
 
 - **The `agencyhandy` MCP server** (`https://mcp.agencyhandy.com/`): about 100 `ah_*` tools covering clients, leads, projects, tasks, tickets, invoices, proposals, orders, services, custom fields and webhooks, plus owner insights such as cash risk and client churn risk.
-- **The `agencyhandy` skill**, which teaches Claude how to use these tools well and to confirm before any change to your data.
+- **The `agencyhandy` skill**, which teaches Claude how to use these tools well.
+- **A confirmation guard.** Claude Code always asks you before it runs any tool that emails your clients, changes an invoice's status, or deletes data: sending invoices and proposals, inviting or creating clients (which sends an invite email), converting leads, setting invoice status, and deleting custom fields. This holds in every permission mode, including auto mode.
 
 ## Try it
 
@@ -27,7 +28,18 @@ To change the key later, run `/plugin configure agencyhandy@agencyhandy` in Clau
 
 ## Security
 
-The API key acts as you, with your role's permissions in that workspace. Anything you can do in Agency Handy, Claude can do through this plugin. Claude is told to confirm before every change, but review what it proposes, especially sending invoices or proposals.
+The API key acts as you, with your role's permissions in that workspace. Anything you can do in Agency Handy, Claude can do through this plugin. Actions that reach your clients or delete data always stop for your confirmation. Other changes, such as creating a task, follow your normal Claude Code permission settings.
+
+To revoke access, delete the key in Agency Handy under **Settings → Workspace Config → API Key**.
+
+## Development
+
+The plugin ships an eval suite in `plugins/agencyhandy/evals/`. It runs against mocked Agency Handy responses, so it never touches real data:
+
+```
+cd plugins/agencyhandy
+claude plugin eval . --ablation none --threshold 1
+```
 
 ## Support
 

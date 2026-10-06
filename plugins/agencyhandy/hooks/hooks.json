@@ -1,0 +1,16 @@
+{
+  "description": "Always ask the user before Agency Handy tools that email clients, change invoice status or delete data.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^mcp__plugin_agencyhandy_agencyhandy__ah_(invoice_send|proposal_send|client_invite|client_create|lead_convert|invoice_set_status|custom_field_delete)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"Agency Handy: this action emails your client, changes an invoice, or deletes data. Confirm to continue.\"}}'"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "agencyhandy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Connects Claude Code to your Agency Handy workspace through the hosted Agency Handy MCP server.",
   "author": {
     "name": "Agency Handy",
@@ -8,11 +8,18 @@
     "url": "https://agencyhandy.com"
   },
   "homepage": "https://docs.agencyhandy.com",
-  "keywords": ["agencyhandy", "crm", "agency", "invoices", "projects", "mcp"],
+  "keywords": [
+    "agencyhandy",
+    "crm",
+    "agency",
+    "invoices",
+    "projects",
+    "mcp"
+  ],
   "userConfig": {
     "api_key": {
       "title": "Agency Handy API key",
-      "description": "Workspace API key from Settings → Workspace Config → API Key in Agency Handy.",
+      "description": "Workspace API key from Settings \u2192 Workspace Config \u2192 API Key in Agency Handy.",
       "type": "string",
       "sensitive": true,
       "required": true

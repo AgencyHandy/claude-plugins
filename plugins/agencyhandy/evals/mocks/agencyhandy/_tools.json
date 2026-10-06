@@ -1,0 +1,3332 @@
+{
+ "tools": [
+  {
+   "name": "ah_ping",
+   "description": "Catalog + server identity. Prefer ah_health to verify live backend auth/connectivity.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "ah_health",
+   "description": "Production health: MCP version, API key claims (no secrets), backend reachability latency.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "ah_proposal_get",
+   "description": "Get one proposal/quotation by id.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_proposal_list",
+   "description": "List proposals. Filters: page, limit, sortBy, order, serviceId, memberId, clientCompanyId.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "number"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "sortBy": {
+      "type": "string",
+      "enum": [
+       "createdAt",
+       "updatedAt",
+       "budget",
+       "id"
+      ]
+     },
+     "order": {
+      "type": "string",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "serviceId": {
+      "type": "string"
+     },
+     "memberId": {
+      "type": "string"
+     },
+     "clientCompanyId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_proposal_comments",
+   "description": "Proposal comment thread.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "quotationId": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "quotationId"
+    ]
+   }
+  },
+  {
+   "name": "ah_proposal_templates",
+   "description": "Company proposal HTML templates.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_proposal_user_templates",
+   "description": "Reusable proposal user templates.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_proposal_user_template_get",
+   "description": "Get one proposal user template.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "templateId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "templateId"
+    ]
+   }
+  },
+  {
+   "name": "ah_proposal_public",
+   "description": "Public/client-facing proposal payload.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_proposal_context",
+   "description": "Advanced proposal context: summary, comments, public view, linked service. Prefer for commercial investigations.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_ticket_get",
+   "description": "Get ticket/issue. Optional pid scopes to project/order.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_ticket_list",
+   "description": "List tickets (type=issue) with board filters.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "search": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "description": "Comma-separated TaskStatus ids"
+     },
+     "assignee": {
+      "type": "string"
+     },
+     "client": {
+      "type": "string"
+     },
+     "labels": {
+      "type": "string"
+     },
+     "priority": {
+      "type": "string"
+     },
+     "project": {
+      "type": "string"
+     },
+     "showDoneTasks": {
+      "type": "boolean"
+     },
+     "sortedBy": {
+      "type": "string"
+     },
+     "order": {
+      "type": "string",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_ticket_members",
+   "description": "Assignees on a ticket.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_ticket_suggest_members",
+   "description": "Suggest assignees for a ticket (order team not yet assigned). Prefer ah_ticket_context for ranked candidates + workload.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string",
+      "description": "Order/project id (required for useful suggestions)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_ticket_comments",
+   "description": "Comments on a ticket.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_ticket_context",
+   "description": "Advanced ticket context: details, comments, current assignees, suggested people to assign (order team/PM + workload on this order), linked order. Use before ah_work_assign.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string",
+      "description": "Order/project id \u2014 improves assignee suggestions"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_project_get",
+   "description": "Get project/order details.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_project_list",
+   "description": "List projects/orders with status/sort/query filters.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "status": {
+      "type": "string"
+     },
+     "sortedBy": {
+      "type": "string"
+     },
+     "sortOrder": {
+      "type": "string",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "query": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_project_tasks",
+   "description": "Tasks or issues under a project (type=task|issue).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "task",
+       "issue"
+      ]
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_project_files",
+   "description": "Files on a project.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_project_prefix_settings",
+   "description": "Order number prefix settings.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_project_for_member",
+   "description": "Projects for a member.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "memberId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "memberId"
+    ]
+   }
+  },
+  {
+   "name": "ah_project_task_metadata",
+   "description": "Project task board metadata.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_project_context",
+   "description": "Advanced order/project context: summary, tasks, tickets, files, related invoices/subscriptions, prefix settings. Alias-friendly for delivery investigations.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_order_context",
+   "description": "Alias of ah_project_context \u2014 advanced order pack (tasks, tickets, files, invoices, subscriptions).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_get",
+   "description": "Get one task. Optional pid.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_list",
+   "description": "List tasks (type=task) with board filters.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "search": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "description": "Comma-separated TaskStatus ids"
+     },
+     "assignee": {
+      "type": "string"
+     },
+     "client": {
+      "type": "string"
+     },
+     "labels": {
+      "type": "string"
+     },
+     "priority": {
+      "type": "string"
+     },
+     "project": {
+      "type": "string"
+     },
+     "showDoneTasks": {
+      "type": "boolean"
+     },
+     "sortedBy": {
+      "type": "string"
+     },
+     "order": {
+      "type": "string",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_task_statuses",
+   "description": "Company task status lanes.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_task_members",
+   "description": "Members on a task.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_suggest_members",
+   "description": "Suggest assignees for a task (order team not yet assigned). Prefer ah_task_context for ranked candidates + workload.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string",
+      "description": "Order/project id (required for useful suggestions)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_comments",
+   "description": "Comments on a task.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_client_requests",
+   "description": "Client-requested tasks awaiting agency action.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_task_time_entries",
+   "description": "Time tracker entries for a task.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string"
+     },
+     "projectId": {
+      "type": "string"
+     },
+     "memberId": {
+      "type": "string"
+     },
+     "startDate": {
+      "type": "string"
+     },
+     "endDate": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_context",
+   "description": "Advanced task context: details, comments, time entries, current assignees, ranked assignmentCandidates (who to assign \u2014 order team/PM + workload), linked order. Use before ah_work_assign.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string",
+      "description": "Order/project id \u2014 improves assignee suggestions"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_invoice_get",
+   "description": "Get one invoice by id.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "invoiceId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "invoiceId"
+    ]
+   }
+  },
+  {
+   "name": "ah_invoice_list",
+   "description": "List invoices (limit/skip/client/clientCompanyId).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "client": {
+      "type": "string"
+     },
+     "clientCompanyId": {
+      "type": "string"
+     },
+     "query": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_invoice_context",
+   "description": "Advanced invoice context: summary, public view, linked order, related client invoices. Prefer for billing investigations.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "invoiceId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "invoiceId"
+    ]
+   }
+  },
+  {
+   "name": "ah_company_members",
+   "description": "List company members (team/clients). Uses GET /members. Optional role/type/search filters; companyId is ignored (auth scopes workspace). For name\u2192id resolution prefer ah_member_resolve.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "companyId": {
+      "type": "string",
+      "description": "Optional; ignored \u2014 workspace comes from API key"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "role": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "search": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_custom_field_list",
+   "description": "List workspace custom field definitions (mode=create) for lead, client, and/or task. GET /custom-fields. Use returned _ids with ah_custom_field_set_values / create lead|client customFields \u2014 never invent ids.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "enum": [
+       "lead",
+       "client",
+       "task"
+      ],
+      "description": "Optional filter; omit to return all groups"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_custom_field_seed_types",
+   "description": "List platform seed field types (text/number/boolean/\u2026). GET /custom-fields/seed?type=customField. Usually not needed \u2014 ah_custom_field_create resolves seeds by type automatically.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_whoami",
+   "description": "Who this API key is and what it may do: member, workspace, role, and the effective permission names. GET /accounts/whoami. Use this before a write to check authority (e.g. createService) instead of inferring it from the role name or discovering it from a 403.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_member_custom_fields",
+   "description": "Get a lead/client member profile including custom field definitions + filled values. GET /members/:memberId. Prefer ah_member_resolve first for the id.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "memberId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "memberId"
+    ]
+   }
+  },
+  {
+   "name": "ah_member_resolve",
+   "description": "Resolve a person name/email to a real member ObjectId from the DB (GET /members). Returns resolution=unique|ambiguous|none. If ambiguous/none: ask the user \u2014 NEVER invent or guess an id. Required before ah_work_assign / ah_order_assign when the user gave a name.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Name or email, e.g. Sara, Sara Chen, sara@agency.com"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "role": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  },
+  {
+   "name": "ah_status_resolve",
+   "description": "Resolve a board status label (e.g. Done, In Progress) to a real TaskStatus ObjectId from GET /taskStatus. Returns unique|ambiguous|none. Never invent status ids \u2014 required before ah_work_set_status when the user gave a label.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Status label as the user said it"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  },
+  {
+   "name": "ah_client_company_list",
+   "description": "List client companies.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_client_company_get",
+   "description": "Get one client company.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_service_list",
+   "description": "List catalog services. serviceType required by API: service | addOn | inline | inlineAddOn (default service).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "serviceType": {
+      "type": "string",
+      "enum": [
+       "service",
+       "addOn",
+       "inline",
+       "inlineAddOn"
+      ]
+     },
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "search": {
+      "type": "string",
+      "description": "Maps to query q"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_service_get",
+   "description": "Get one service.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_form_list",
+   "description": "List agency forms.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_form_get",
+   "description": "Get one form by id.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_dashboard",
+   "description": "Company dashboard snapshot (optional preset/from/to).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "preset": {
+      "type": "string"
+     },
+     "from": {
+      "type": "string"
+     },
+     "to": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_dashboard_digest",
+   "description": "Owner morning briefing: open invoices (unpaid), overdue tickets/tasks, recent New leads, plus raw dashboard snapshot. Prefer this over multiple list calls.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number",
+      "description": "Max items per section (default 10, max 25)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_cash_risk",
+   "description": "Owner insight: open invoice cash at risk \u2014 aging buckets (0\u20137, 8\u201330, 31\u201360, 61\u201390, 90+), total due, top clients by amount owed. Drill down with ah_invoice_context.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number",
+      "description": "Max sample rows / top clients (default 10)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_proposal_pipeline",
+   "description": "Owner insight: proposal pipeline aging \u2014 waiting-on-client, stale sent, expiring soon. Use ah_proposal_context on a row id.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_lead_segments",
+   "description": "Owner insight: lead market segmentation by status, source, and optional lead custom field name (e.g. Industry). Lists available lead custom fields.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "customFieldName": {
+      "type": "string",
+      "description": "Optional lead custom field display name to segment on"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_client_churn_risk",
+   "description": "Owner insight: heuristic client churn risk from overdue/open invoices + quiet orders. Returns scored atRiskClients with reasons. Not ML \u2014 sample-based.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_chat_list_conversations",
+   "description": "List in-app chat conversations. GET /chat/conversations (tab/filter/limit/cursor/search).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "tab": {
+      "type": "string",
+      "description": "e.g. client"
+     },
+     "filter": {
+      "type": "string",
+      "description": "e.g. all"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "cursor": {
+      "type": "string"
+     },
+     "search": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_chat_get_conversation",
+   "description": "Get one chat conversation by id. GET /chat/conversations/:id",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_chat_list_messages",
+   "description": "List messages in a conversation. GET /chat/messages (pass conversationId and paging).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "cursor": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "conversationId"
+    ]
+   }
+  },
+  {
+   "name": "ah_chat_settings",
+   "description": "Get chat workspace settings. GET /chat/settings",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_chat_context",
+   "description": "Context pack: conversation + recent messages + chat settings (when conversationId given).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_email_to_ticket_settings",
+   "description": "Get email-to-ticket inbound settings (address/token/enabled). GET /company/email-to-ticket/settings",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_webhook_list",
+   "description": "List company outbound webhooks. GET /webhooks",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_webhook_get",
+   "description": "Get one webhook by id. GET /webhooks/:webhookId",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_webhook_events",
+   "description": "List available webhook event types. GET /webhooks/events/list",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_webhook_logs",
+   "description": "List webhook delivery logs. GET /webhooks/logs (optional webhookId, limit, skip).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "skip": {
+      "type": "number"
+     },
+     "query": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_webhook_context",
+   "description": "Context pack: webhook details + recent logs + event catalog.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "limit": {
+      "type": "number"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_order_subscription_list",
+   "description": "List client order-subscriptions (recurring). GET /order-subscriptions?client=&clientCompanyId=",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "client": {
+      "type": "string"
+     },
+     "clientCompanyId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_order_subscription_get",
+   "description": "Get one order-subscription. GET /order-subscriptions/:subscriptionId",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "ah_platform_subscription_list",
+   "description": "List Agency Handy SaaS subscriptions for the workspace. GET /subscriptions/list",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_lead_create",
+   "description": "Create one or more leads. POST /members/bulk-lead (body = array). Required: email, status (New|Contacted|Qualified|Working|Proposal Sent|Negotiation), type (individual|leadCompanyMember). Defaults: type=individual, status=New, sendInvitationEmail=false.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "New",
+       "Contacted",
+       "Qualified",
+       "Working",
+       "Proposal Sent",
+       "Negotiation"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "individual",
+       "leadCompanyMember"
+      ]
+     },
+     "companyName": {
+      "type": "string"
+     },
+     "contactNo": {
+      "type": "string"
+     },
+     "country": {
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "state": {
+      "type": "string"
+     },
+     "zipCode": {
+      "type": "string"
+     },
+     "address": {
+      "type": "string"
+     },
+     "website": {
+      "type": "string"
+     },
+     "source": {
+      "type": "string"
+     },
+     "leadValue": {
+      "type": "string"
+     },
+     "agent": {
+      "type": "string",
+      "description": "Assignee member ObjectId"
+     },
+     "sendInvitationEmail": {
+      "type": "boolean"
+     },
+     "category": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Label ObjectIds"
+     },
+     "leads": {
+      "type": "array",
+      "description": "Optional bulk array; if set, top-level fields are ignored",
+      "items": {
+       "type": "object"
+      }
+     },
+     "customFields": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "_id": {
+         "type": "string",
+         "description": "Custom field definition ObjectId from ah_custom_field_list"
+        },
+        "stringValue": {
+         "type": "string"
+        },
+        "numberValue": {
+         "type": "number"
+        },
+        "booleanValue": {
+         "type": "boolean"
+        },
+        "dateValue": {
+         "type": "string"
+        },
+        "arrayValue": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "value": {
+            "type": "string"
+           },
+           "label": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "value",
+           "label"
+          ]
+         }
+        }
+       },
+       "required": [
+        "_id"
+       ]
+      },
+      "description": "Optional values using definition ids from ah_custom_field_list (type=lead)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_client_create",
+   "description": "Create one or more clients (people). POST /members/bulk-client (body = array). status is always Client. Email optional. Converts existing lead with same email. Default sendInvitationEmail=true.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "companyName": {
+      "type": "string"
+     },
+     "contactNo": {
+      "type": "string"
+     },
+     "country": {
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "state": {
+      "type": "string"
+     },
+     "zipCode": {
+      "type": "string"
+     },
+     "address": {
+      "type": "string"
+     },
+     "website": {
+      "type": "string"
+     },
+     "source": {
+      "type": "string"
+     },
+     "agent": {
+      "type": "string"
+     },
+     "sendInvitationEmail": {
+      "type": "boolean"
+     },
+     "category": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "clients": {
+      "type": "array",
+      "description": "Optional bulk array; if set, top-level fields are ignored",
+      "items": {
+       "type": "object"
+      }
+     },
+     "customFields": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "_id": {
+         "type": "string",
+         "description": "Custom field definition ObjectId from ah_custom_field_list"
+        },
+        "stringValue": {
+         "type": "string"
+        },
+        "numberValue": {
+         "type": "number"
+        },
+        "booleanValue": {
+         "type": "boolean"
+        },
+        "dateValue": {
+         "type": "string"
+        },
+        "arrayValue": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "value": {
+            "type": "string"
+           },
+           "label": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "value",
+           "label"
+          ]
+         }
+        }
+       },
+       "required": [
+        "_id"
+       ]
+      },
+      "description": "Optional values using definition ids from ah_custom_field_list (type=client)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_client_company_create",
+   "description": "Create a client company (B2B). POST /client-companies. Required: name, ownerId (existing member), city. type is always client.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "ownerId": {
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "country": {
+      "type": "string"
+     },
+     "state": {
+      "type": "string"
+     },
+     "zipCode": {
+      "type": "string"
+     },
+     "streetAddress": {
+      "type": "string"
+     },
+     "website": {
+      "type": "string"
+     },
+     "phone": {
+      "type": "string"
+     },
+     "taxId": {
+      "type": "string"
+     },
+     "industry": {
+      "type": "string"
+     },
+     "logo": {
+      "type": "string"
+     },
+     "isActive": {
+      "type": "boolean"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "ownerId",
+     "city"
+    ]
+   }
+  },
+  {
+   "name": "ah_member_update",
+   "description": "Update a lead or client profile. PUT /accounts/update. Pass accountId plus any fields to change (name, status, contact, agent, etc.).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "string",
+      "description": "Member/lead/client account ObjectId"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "contactNo": {
+      "type": "string"
+     },
+     "country": {
+      "type": "string"
+     },
+     "city": {
+      "type": "string"
+     },
+     "state": {
+      "type": "string"
+     },
+     "zipCode": {
+      "type": "string"
+     },
+     "address": {
+      "type": "string"
+     },
+     "companyName": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "description": "Lead pipeline status or Client"
+     },
+     "source": {
+      "type": "string"
+     },
+     "leadValue": {
+      "type": "string"
+     },
+     "website": {
+      "type": "string"
+     },
+     "agent": {
+      "type": "string"
+     },
+     "isActive": {
+      "type": "boolean"
+     },
+     "isConvertedClient": {
+      "type": "boolean"
+     },
+     "leadCustomFields": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "_id": {
+         "type": "string",
+         "description": "Custom field definition ObjectId from ah_custom_field_list"
+        },
+        "stringValue": {
+         "type": "string"
+        },
+        "numberValue": {
+         "type": "number"
+        },
+        "booleanValue": {
+         "type": "boolean"
+        },
+        "dateValue": {
+         "type": "string"
+        },
+        "arrayValue": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "value": {
+            "type": "string"
+           },
+           "label": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "value",
+           "label"
+          ]
+         }
+        }
+       },
+       "required": [
+        "_id"
+       ]
+      },
+      "description": "Set lead custom field values (definition _id + typed value)"
+     },
+     "clientCustomFields": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "_id": {
+         "type": "string",
+         "description": "Custom field definition ObjectId from ah_custom_field_list"
+        },
+        "stringValue": {
+         "type": "string"
+        },
+        "numberValue": {
+         "type": "number"
+        },
+        "booleanValue": {
+         "type": "boolean"
+        },
+        "dateValue": {
+         "type": "string"
+        },
+        "arrayValue": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "value": {
+            "type": "string"
+           },
+           "label": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "value",
+           "label"
+          ]
+         }
+        }
+       },
+       "required": [
+        "_id"
+       ]
+      },
+      "description": "Set client custom field values (definition _id + typed value)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountId"
+    ]
+   }
+  },
+  {
+   "name": "ah_lead_convert",
+   "description": "Convert a lead to a client. PUT /accounts/update with isConvertedClient=true (same endpoint as member update).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "string",
+      "description": "Lead account ObjectId"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "sendInvitationEmail": {
+      "type": "boolean"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "accountId"
+    ]
+   }
+  },
+  {
+   "name": "ah_client_invite",
+   "description": "Email portal invite(s) to existing client(s). POST /members/send-client-invite with clientIds[].",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "clientIds": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Client member ObjectIds"
+     },
+     "clientId": {
+      "type": "string",
+      "description": "Single client id (shorthand for clientIds)"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_ticket_create",
+   "description": "Create a ticket (task with type=issue). POST /tasks. Required: name, priority, labels[], type=issue. client required unless visibility=internal|order.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "priority": {
+      "type": "string",
+      "enum": [
+       "low",
+       "medium",
+       "high",
+       "urgent"
+      ]
+     },
+     "status": {
+      "type": "string",
+      "description": "Task status ObjectId"
+     },
+     "labels": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Label ObjectIds (required by API; empty array ok)"
+     },
+     "client": {
+      "type": "string",
+      "description": "Client member ObjectId (required unless visibility=internal|order)"
+     },
+     "visibility": {
+      "type": "string",
+      "enum": [
+       "internal",
+       "client",
+       "order"
+      ]
+     },
+     "assignmembers": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "dueDate": {
+      "type": "string"
+     },
+     "startDate": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string",
+      "description": "Optional order/project ObjectId"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "priority"
+    ]
+   }
+  },
+  {
+   "name": "ah_ticket_update",
+   "description": "Update a ticket. PUT /tasks/:taskId. Use for name, status, priority, dates, description.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "priority": {
+      "type": "string",
+      "enum": [
+       "low",
+       "medium",
+       "high",
+       "urgent"
+      ]
+     },
+     "status": {
+      "type": "string"
+     },
+     "dueDate": {
+      "type": "string"
+     },
+     "startDate": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_create",
+   "description": "Create a task (type=task). POST /tasks. Required: name, priority, labels[]. client required unless visibility=internal|order.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "priority": {
+      "type": "string",
+      "enum": [
+       "low",
+       "medium",
+       "high",
+       "urgent"
+      ]
+     },
+     "status": {
+      "type": "string",
+      "description": "Task status ObjectId"
+     },
+     "labels": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Label ObjectIds (required by API; empty array ok)"
+     },
+     "client": {
+      "type": "string",
+      "description": "Client member ObjectId (required unless visibility=internal|order)"
+     },
+     "visibility": {
+      "type": "string",
+      "enum": [
+       "internal",
+       "client",
+       "order"
+      ]
+     },
+     "assignmembers": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "dueDate": {
+      "type": "string"
+     },
+     "startDate": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string",
+      "description": "Optional order/project ObjectId"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "priority"
+    ]
+   }
+  },
+  {
+   "name": "ah_task_update",
+   "description": "Update a task. PUT /tasks/:taskId.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "priority": {
+      "type": "string",
+      "enum": [
+       "low",
+       "medium",
+       "high",
+       "urgent"
+      ]
+     },
+     "status": {
+      "type": "string"
+     },
+     "dueDate": {
+      "type": "string"
+     },
+     "startDate": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   }
+  },
+  {
+   "name": "ah_comment_create",
+   "description": "Add a comment on a ticket/task. POST /comments. Required: text, taskId, type (default agencyComment). memberId defaults to API key owner.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "text": {
+      "type": "string"
+     },
+     "taskId": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "clientComment",
+       "agencyComment",
+       "nameUpdate",
+       "descriptionUpdate",
+       "dueDateUpdate",
+       "priorityUpdate",
+       "statusUpdate",
+       "taskReopen",
+       "storyPointUpdate",
+       "taskMarkAsComplete",
+       "MultipleUpdate",
+       "startDateUpdate",
+       "billingDateUpdate",
+       "taskReminderUpdate"
+      ]
+     },
+     "memberId": {
+      "type": "string",
+      "description": "Author member ObjectId (defaults to API key member)"
+     },
+     "parentComment": {
+      "type": "string"
+     },
+     "mentionLists": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "pid": {
+      "type": "string",
+      "description": "Optional order ObjectId"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "text",
+     "taskId"
+    ]
+   }
+  },
+  {
+   "name": "ah_invoice_create",
+   "description": "Create an invoice. POST /invoices. Required: currency and one of client | externalEmail | clientCompanyId. Use additionalFields for line items when amount>0.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "currency": {
+      "type": "string"
+     },
+     "client": {
+      "type": "string"
+     },
+     "clientCompanyId": {
+      "type": "string"
+     },
+     "externalEmail": {
+      "type": "string"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "project": {
+      "type": "string",
+      "description": "Order ObjectId"
+     },
+     "amount": {
+      "type": "number"
+     },
+     "quantity": {
+      "type": "number"
+     },
+     "dueDate": {
+      "type": "string"
+     },
+     "notes": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "draft",
+       "open",
+       "paid",
+       "void",
+       "uncollectable"
+      ]
+     },
+     "discountPercentage": {
+      "type": "number"
+     },
+     "paymentType": {
+      "type": "string"
+     },
+     "additionalFields": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "quantity": {
+         "type": "number"
+        },
+        "value": {
+         "type": "number"
+        },
+        "type": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "currency"
+    ]
+   }
+  },
+  {
+   "name": "ah_invoice_update",
+   "description": "Update an invoice. PUT /invoices/:invoiceId. Common: status, notes, dueDate, amount fields.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "invoiceId": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "draft",
+       "open",
+       "paid",
+       "void",
+       "uncollectable"
+      ]
+     },
+     "notes": {
+      "type": "string"
+     },
+     "dueDate": {
+      "type": "string"
+     },
+     "paidDate": {
+      "type": "string"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "amount": {
+      "type": "number"
+     },
+     "amountDue": {
+      "type": "number"
+     },
+     "amountPaid": {
+      "type": "number"
+     },
+     "discountPercentage": {
+      "type": "number"
+     },
+     "clientId": {
+      "type": "string"
+     },
+     "externalEmail": {
+      "type": "string"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "invoiceId"
+    ]
+   }
+  },
+  {
+   "name": "ah_proposal_create",
+   "description": "Create a proposal/quotation. POST /quotations. Provide clientId or leadId or externalEmail (+ names). Optional: name, budget, currency, status, inlineServices[].",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "clientId": {
+      "type": "string"
+     },
+     "leadId": {
+      "type": "string"
+     },
+     "clientCompanyId": {
+      "type": "string"
+     },
+     "externalEmail": {
+      "type": "string"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "budget": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "draft",
+       "sent",
+       "accepted",
+       "rejected"
+      ]
+     },
+     "orderBrief": {
+      "type": "string"
+     },
+     "termsAndConditions": {
+      "type": "string"
+     },
+     "paymentType": {
+      "type": "string"
+     },
+     "assigneeIds": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "inlineServices": {
+      "type": "array",
+      "items": {
+       "type": "object"
+      },
+      "description": "Service line payloads as accepted by createQuotation"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_proposal_update",
+   "description": "Update a proposal. PUT /quotations/:quotationId.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "quotationId": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "clientId": {
+      "type": "string"
+     },
+     "leadId": {
+      "type": "string"
+     },
+     "externalEmail": {
+      "type": "string"
+     },
+     "firstName": {
+      "type": "string"
+     },
+     "lastName": {
+      "type": "string"
+     },
+     "budget": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "draft",
+       "sent",
+       "accepted",
+       "rejected"
+      ]
+     },
+     "orderBrief": {
+      "type": "string"
+     },
+     "termsAndConditions": {
+      "type": "string"
+     },
+     "assigneeIds": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "inlineServices": {
+      "type": "array",
+      "items": {
+       "type": "object"
+      }
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "quotationId"
+    ]
+   }
+  },
+  {
+   "name": "ah_proposal_send",
+   "description": "Send a proposal to the recipient. PUT /quotations/send/:quotationId.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "quotationId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "quotationId"
+    ]
+   }
+  },
+  {
+   "name": "ah_order_update",
+   "description": "Update an order/project. PUT /orders?pid=. Fields: name, status, deadline, budget, notes, brief, kickoffDate, assignedProjectManagers[].",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "pid": {
+      "type": "string",
+      "description": "Order ObjectId (required query)"
+     },
+     "name": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string"
+     },
+     "deadline": {
+      "type": "string"
+     },
+     "kickoffDate": {
+      "type": "string"
+     },
+     "budget": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "notes": {
+      "type": "string"
+     },
+     "brief": {
+      "type": "string"
+     },
+     "quantity": {
+      "type": "number"
+     },
+     "assignedProjectManagers": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "pid"
+    ]
+   }
+  },
+  {
+   "name": "ah_invoice_send",
+   "description": "Send an invoice to the client. Draft \u2192 sets status open (emails client). Already open \u2192 resend via PUT /invoices/resend. Pass resend=true to force resend.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "invoiceId": {
+      "type": "string"
+     },
+     "invoiceIds": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Bulk resend (uses /resend)"
+     },
+     "resend": {
+      "type": "boolean",
+      "description": "Force resend path even for a single id"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "ah_invoice_set_status",
+   "description": "Set invoice status (paid|void|open|uncollectable|draft). PUT /invoices/:invoiceId. Prefer ah_invoice_send to email a draft.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "invoiceId": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "draft",
+       "open",
+       "paid",
+       "void",
+       "uncollectable"
+      ]
+     },
+     "paidDate": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "invoiceId",
+     "status"
+    ]
+   }
+  },
+  {
+   "name": "ah_order_create",
+   "description": "Create an order from a catalog service package. POST /orders/create. Required: name, budget, currency, service, packageId, packageName, clientId (or company target). Defaults: quantity=1, paymentType=oneTime, createInvoice=false, clientTargetType=individual. Prefer ah_service_list/get first for package ids.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "budget": {
+      "type": "number"
+     },
+     "currency": {
+      "type": "string"
+     },
+     "service": {
+      "type": "string",
+      "description": "Service ObjectId"
+     },
+     "packageId": {
+      "type": "string"
+     },
+     "packageName": {
+      "type": "string"
+     },
+     "clientTargetType": {
+      "type": "string",
+      "enum": [
+       "individual",
+       "company"
+      ]
+     },
+     "clientId": {
+      "type": "string"
+     },
+     "clientCompanyId": {
+      "type": "string"
+     },
+     "sentToClientIds": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Required when clientTargetType=company"
+     },
+     "quantity": {
+      "type": "number"
+     },
+     "paymentType": {
+      "type": "string",
+      "enum": [
+       "oneTime",
+       "subscription"
+      ]
+     },
+     "createInvoice": {
+      "type": "boolean"
+     },
+     "notes": {
+      "type": "string"
+     },
+     "brief": {
+      "type": "string"
+     },
+     "kickoffDate": {
+      "type": "string"
+     },
+     "deadline": {
+      "type": "string"
+     },
+     "assignedProjectManagers": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "serviceFee": {
+      "type": "object",
+      "description": "Defaults to { name: packageName, amount: budget, quantity }",
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "amount": {
+        "type": "number"
+       },
+       "quantity": {
+        "type": "number"
+       }
+      }
+     },
+     "repeatCount": {
+      "type": "number"
+     },
+     "repeatDuration": {
+      "type": "string",
+      "enum": [
+       "day",
+       "week",
+       "month",
+       "year"
+      ]
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "budget",
+     "currency",
+     "service",
+     "packageId",
+     "packageName"
+    ]
+   }
+  },
+  {
+   "name": "ah_work_assign",
+   "description": "Add or remove assignees on a ticket or task. Pass memberIds from ah_member_resolve only (resolution=unique or user-confirmed match). NEVER invent ids or resolve names yourself. action=add \u2192 POST /tasks/member/:taskId; action=remove \u2192 PUT.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string"
+     },
+     "memberIds": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "memberId": {
+      "type": "string",
+      "description": "Shorthand for a single memberId from ah_member_resolve"
+     },
+     "action": {
+      "type": "string",
+      "enum": [
+       "add",
+       "remove"
+      ]
+     },
+     "clientCompanyId": {
+      "type": "string"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "taskId",
+     "action"
+    ]
+   }
+  },
+  {
+   "name": "ah_order_assign",
+   "description": "Set order project managers. Pass assignedProjectManagers / memberId from ah_member_resolve only (unique or user-confirmed). NEVER invent ids. PUT /orders?pid=.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "pid": {
+      "type": "string"
+     },
+     "assignedProjectManagers": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "memberId": {
+      "type": "string",
+      "description": "Shorthand single PM from ah_member_resolve"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "pid"
+    ]
+   }
+  },
+  {
+   "name": "ah_work_set_status",
+   "description": "Move a ticket/task to a board status. Pass status ObjectId from ah_status_resolve (unique or user-confirmed) or ah_task_statuses. NEVER invent status ids or map labels yourself.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string"
+     },
+     "status": {
+      "type": "string",
+      "description": "TaskStatus ObjectId from ah_status_resolve"
+     },
+     "pid": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "taskId",
+     "status"
+    ]
+   }
+  },
+  {
+   "name": "ah_custom_field_create",
+   "description": "Create a lead/client/task custom field definition in Workspace Config. Resolves seed type id automatically. POST /custom-fields?type=. Admin/SuperAdmin only. Prefer ah_custom_field_list afterward for the definition _id used in set_values.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "belongsTo": {
+      "type": "string",
+      "enum": [
+       "lead",
+       "client",
+       "task"
+      ],
+      "description": "Owner: lead | client | task"
+     },
+     "name": {
+      "type": "string",
+      "description": "Field display name"
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "text",
+       "number",
+       "boolean",
+       "singleSelect",
+       "multiSelect",
+       "file"
+      ],
+      "description": "text | number | boolean | singleSelect | multiSelect | file"
+     },
+     "required": {
+      "type": "boolean"
+     },
+     "placeholder": {
+      "type": "string"
+     },
+     "options": {
+      "type": "array",
+      "description": "Required for singleSelect/multiSelect \u2014 option labels",
+      "items": {
+       "type": "object",
+       "properties": {
+        "label": {
+         "type": "string"
+        },
+        "value": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "label"
+       ]
+      }
+     },
+     "fields": {
+      "type": "array",
+      "description": "Optional bulk: [{ name, type, required?, options? }]",
+      "items": {
+       "type": "object"
+      }
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "belongsTo"
+    ]
+   }
+  },
+  {
+   "name": "ah_custom_field_set_values",
+   "description": "Fill lead or client custom field values on a member. POST /custom-fields/respond?type=. Pass definition _ids from ah_custom_field_list (or respond-mode ids from ah_member_custom_fields). Never invent field ids.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "enum": [
+       "lead",
+       "client"
+      ],
+      "description": "Must match the field owner (lead vs client)"
+     },
+     "memberId": {
+      "type": "string",
+      "description": "Lead/client member ObjectId (resourceId)"
+     },
+     "values": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "_id": {
+         "type": "string",
+         "description": "Custom field definition ObjectId from ah_custom_field_list"
+        },
+        "stringValue": {
+         "type": "string"
+        },
+        "numberValue": {
+         "type": "number"
+        },
+        "booleanValue": {
+         "type": "boolean"
+        },
+        "dateValue": {
+         "type": "string"
+        },
+        "arrayValue": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "value": {
+            "type": "string"
+           },
+           "label": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "value",
+           "label"
+          ]
+         }
+        }
+       },
+       "required": [
+        "_id"
+       ]
+      },
+      "description": "[{ _id, stringValue|numberValue|booleanValue|arrayValue }]"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "type",
+     "memberId",
+     "values"
+    ]
+   }
+  },
+  {
+   "name": "ah_service_create",
+   "description": "Create a catalog service. POST /services. Requires the createService permission \u2014 check with ah_whoami first rather than discovering it from a rejection. Required: name, serviceType, type, isPublished, packages (1-5, each with price + currency, unique packageName and position). reminderType/reminders are accepted only when type=subscription; files/mediaPositions only when serviceType=service.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "3-1000 chars"
+     },
+     "serviceType": {
+      "type": "string",
+      "enum": [
+       "service",
+       "addOn",
+       "inline",
+       "inlineAddOn"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "oneTime",
+       "subscription"
+      ]
+     },
+     "isPublished": {
+      "type": "boolean"
+     },
+     "slug": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "isPopular": {
+      "type": "boolean"
+     },
+     "billingCycleEvent": {
+      "type": "string",
+      "enum": [
+       "createOrderWithTask",
+       "noChange",
+       "doNotCreateNewOrder"
+      ]
+     },
+     "packages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "packageName and position must be unique within the service",
+      "items": {
+       "type": "object",
+       "properties": {
+        "packageName": {
+         "type": "string"
+        },
+        "position": {
+         "type": "number"
+        },
+        "price": {
+         "type": "number",
+         "minimum": 0
+        },
+        "currency": {
+         "type": "string",
+         "description": "e.g. USD"
+        },
+        "brief": {
+         "type": "string"
+        },
+        "features": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         },
+         "description": "1-15 entries"
+        },
+        "duration": {
+         "type": "string"
+        },
+        "repeatCount": {
+         "type": "number"
+        },
+        "repeatDuration": {
+         "type": "string",
+         "enum": [
+          "month",
+          "week",
+          "day",
+          "year"
+         ]
+        },
+        "billingCycleCount": {
+         "type": "number"
+        },
+        "trialPeriod": {
+         "type": "number"
+        },
+        "trialPeriodDuration": {
+         "type": "string",
+         "enum": [
+          "month",
+          "week",
+          "day",
+          "year"
+         ]
+        },
+        "setupFeeAmount": {
+         "type": "number"
+        },
+        "setupFeeCount": {
+         "type": "number"
+        }
+       },
+       "required": [
+        "price",
+        "currency"
+       ]
+      }
+     },
+     "faqs": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "question": {
+         "type": "string"
+        },
+        "answer": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "question",
+        "answer"
+       ]
+      }
+     },
+     "reminderType": {
+      "type": "string",
+      "enum": [
+       "sendReminder",
+       "doNotSendReminder"
+      ],
+      "description": "Only when type=subscription"
+     },
+     "reminders": {
+      "type": "array",
+      "items": {
+       "type": "object"
+      },
+      "description": "Required when reminderType=sendReminder"
+     },
+     "portfolios": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "serviceType",
+     "type",
+     "isPublished",
+     "packages"
+    ]
+   }
+  },
+  {
+   "name": "ah_service_update",
+   "description": "Update a catalog service, changing only what you pass. PUT /services/:id requires the complete service and package array, so this reads the service first and merges your changes into it \u2014 omitting a field keeps its current value, and omitting a package keeps that package. Match a package by packageId (preferred) or packageName. Use removePackages to drop one deliberately. Requires the updateService permission (check with ah_whoami).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "serviceId": {
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "description": {
+      "type": "string"
+     },
+     "slug": {
+      "type": "string"
+     },
+     "isPublished": {
+      "type": "boolean"
+     },
+     "isPopular": {
+      "type": "boolean"
+     },
+     "billingCycleEvent": {
+      "type": "string",
+      "enum": [
+       "createOrderWithTask",
+       "noChange",
+       "doNotCreateNewOrder"
+      ]
+     },
+     "packages": {
+      "type": "array",
+      "description": "Partial package changes. Each entry needs packageId or packageName to identify an existing package; an entry matching nothing is created.",
+      "items": {
+       "type": "object",
+       "properties": {
+        "packageId": {
+         "type": "string"
+        },
+        "packageName": {
+         "type": "string"
+        },
+        "price": {
+         "type": "number"
+        },
+        "currency": {
+         "type": "string"
+        },
+        "brief": {
+         "type": "string"
+        },
+        "features": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "position": {
+         "type": "number"
+        },
+        "duration": {
+         "type": "string"
+        },
+        "repeatCount": {
+         "type": "number"
+        },
+        "repeatDuration": {
+         "type": "string",
+         "enum": [
+          "month",
+          "week",
+          "day",
+          "year"
+         ]
+        },
+        "billingCycleCount": {
+         "type": "number"
+        },
+        "trialPeriod": {
+         "type": "number"
+        },
+        "trialPeriodDuration": {
+         "type": "string",
+         "enum": [
+          "month",
+          "week",
+          "day",
+          "year"
+         ]
+        },
+        "setupFeeAmount": {
+         "type": "number"
+        },
+        "setupFeeCount": {
+         "type": "number"
+        },
+        "setupFeeName": {
+         "type": "string"
+        },
+        "isPopular": {
+         "type": "boolean"
+        },
+        "iconColor": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "removePackages": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "packageId or packageName of packages to delete"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "serviceId"
+    ]
+   }
+  },
+  {
+   "name": "ah_custom_field_delete",
+   "description": "Delete custom field definition(s). DELETE /custom-fields. Admin/SuperAdmin only. Pass ids from ah_custom_field_list.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "customFieldIds": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "description": "Definition ObjectIds to delete"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "customFieldIds"
+    ]
+   }
+  },
+  {
+   "name": "ah_get_invoice",
+   "description": "Alias of ah_invoice_get.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "invoiceId": {
+      "type": "string"
+     },
+     "workspaceId": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "invoiceId"
+    ]
+   }
+  }
+ ]
+}

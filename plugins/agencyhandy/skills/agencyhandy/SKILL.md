@@ -1,6 +1,6 @@
 ---
 name: agencyhandy
-description: Use when the user asks about their Agency Handy workspace — clients, leads, projects, tasks, tickets, invoices, proposals, orders, services, cash flow or client health — or wants to create or update any of them.
+description: Load this before calling any `ah_` tool from the agencyhandy MCP server, and whenever the user mentions Agency Handy or asks about their agency's clients, leads, projects, tasks, tickets, invoices, proposals, orders, services, cash flow or client health, including requests to create, update, send or delete any of them.
 ---
 
 # Agency Handy
