@@ -12,7 +12,7 @@
       "name": "agencyhandy",
       "source": "./plugins/agencyhandy",
       "description": "Work with your Agency Handy workspace from Claude Code: clients, leads, projects, tasks, tickets, invoices, proposals and orders.",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "category": "productivity"
     }
   ]

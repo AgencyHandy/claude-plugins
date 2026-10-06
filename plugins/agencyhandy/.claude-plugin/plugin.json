@@ -1,7 +1,8 @@
 {
   "name": "agencyhandy",
-  "version": "1.1.1",
-  "description": "Connects Claude Code to your Agency Handy workspace through the hosted Agency Handy MCP server.",
+  "displayName": "Agency Handy",
+  "version": "1.1.2",
+  "description": "Work with your Agency Handy workspace from Claude Code: clients, leads, projects, tasks, tickets, invoices and proposals. Sending to clients and deleting always ask you first.",
   "author": {
     "name": "Agency Handy",
     "email": "support@agencyhandy.com",
@@ -35,5 +36,9 @@
     }
   },
   "license": "MIT",
-  "privacyPolicyUrl": "https://agencyhandy.com/privacy-policy"
+  "privacyPolicyUrl": "https://www.agencyhandy.com/privacy-policy/",
+  "repository": "https://github.com/AgencyHandy/claude-plugins",
+  "documentationUrl": "https://docs.agencyhandy.com/integrations/claude-cursor-mcp",
+  "supportUrl": "https://www.agencyhandy.com/contact-us/",
+  "termsOfServiceUrl": "https://www.agencyhandy.com/terms-conditions/"
 }
