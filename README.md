@@ -9,9 +9,9 @@ Connect Claude Code to your Agency Handy workspace. Ask about clients, projects,
 /plugin install agencyhandy@agencyhandy
 ```
 
-Claude Code will ask for your **Agency Handy API key**. You can find it in Agency Handy under **Settings → Workspace Config → API Key**. The key is stored in your system keychain.
+Then run `/mcp`, choose **agencyhandy → Authenticate**, and sign in with Agency Handy in your browser: enter your workspace, sign in, pick the workspace and click **Allow**. There is no key to copy.
 
-To change the key later, run `/plugin configure agencyhandy@agencyhandy` in Claude Code.
+Each connection appears in Agency Handy under **Settings → Workspace Config → API Key**; delete it there to disconnect.
 
 ## What you get
 
@@ -28,9 +28,9 @@ To change the key later, run `/plugin configure agencyhandy@agencyhandy` in Clau
 
 ## Security
 
-The API key acts as you, with your role's permissions in that workspace. Anything you can do in Agency Handy, Claude can do through this plugin. Actions that reach your clients or delete data always stop for your confirmation. Other changes, such as creating a task, follow your normal Claude Code permission settings.
+The connection acts as you, with your role's permissions in the workspace you chose. Anything you can do in Agency Handy, Claude can do through this plugin. Actions that reach your clients or delete data always stop for your confirmation. Other changes, such as creating a task, follow your normal Claude Code permission settings.
 
-To revoke access, delete the key in Agency Handy under **Settings → Workspace Config → API Key**.
+To revoke access, delete the connection in Agency Handy under **Settings → Workspace Config → API Key**.
 
 ## Development
 
