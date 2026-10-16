@@ -1,7 +1,7 @@
 {
   "name": "agencyhandy",
   "displayName": "Agency Handy",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Work with your Agency Handy workspace from Claude Code: clients, leads, projects, tasks, tickets, invoices and proposals. Sending to clients and deleting always ask you first.",
   "icon": "./icon.png",
   "author": {

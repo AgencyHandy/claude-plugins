@@ -9,7 +9,7 @@ The `agencyhandy` MCP server is connected to the user's Agency Handy workspace. 
 
 ## Start of a session
 
-1. Call `ah_health` once to confirm the API key works and see which workspace you are in.
+1. Call `ah_health` once to confirm the connection works and see which workspace you are in.
 2. Read the `ah://full-context` resource before your first non-trivial question. It explains the data model, field names and workflows.
 
 ## Reading
